@@ -92,3 +92,51 @@ YAML
     helm_release.istio_ingress
   ]
 }
+
+resource "kubectl_manifest" "mock_gateway" {
+  yaml_body = <<YAML
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: mock-istio
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - mock-istio.istio-system.svc.cluster.local
+YAML
+  depends_on = [
+    helm_release.istio_ingress
+  ]
+}
+
+
+resource "kubectl_manifest" "mock_virtual_service" {
+  yaml_body = <<YAML
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: mock-istio
+  namespace: istio-system
+spec:
+  hosts:
+  -  mock-istio.istio-system.svc.cluster.local
+  http:
+  - match:
+    - uri:
+        exact: /
+    directResponse:
+      status: 200
+      body:
+        string: "OK"
+YAML
+  depends_on = [
+    helm_release.istio_ingress
+  ]
+}
