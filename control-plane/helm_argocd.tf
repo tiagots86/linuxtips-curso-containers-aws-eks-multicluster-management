@@ -13,7 +13,7 @@ resource "helm_release" "argocd" {
   }
 
   set {
-    name = "server.service.type"
+    name  = "server.service.type"
     value = "NodePort"
   }
 
@@ -52,4 +52,23 @@ resource "helm_release" "argocd" {
     helm_release.karpenter
   ]
 
+}
+
+resource "kubectl_manifest" "argocd_target_group" {
+  yaml_body = <<YAML
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec:
+  serviceRef:
+    name: argocd-server
+    port: 80
+  targetGroupARN: ${aws_lb_target_group.argo.arn}
+  targetType: instance
+YAML
+  depends_on = [
+    helm_release.argocd
+  ]
 }

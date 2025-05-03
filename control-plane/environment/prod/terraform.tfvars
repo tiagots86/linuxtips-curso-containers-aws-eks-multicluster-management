@@ -10,6 +10,12 @@ ssm_subnets = [
   "/linuxtips-vpc/subnets/private/us-east-1c/linuxtips-pods-1c",
 ]
 
+ssm_lb_subnets = [
+  "/linuxtips-vpc/subnets/public/us-east-1a/linuxtips-public-1a",
+  "/linuxtips-vpc/subnets/public/us-east-1b/linuxtips-public-1b",
+  "/linuxtips-vpc/subnets/public/us-east-1c/linuxtips-public-1c",
+]
+
 karpenter_capacity = [
   {
     name               = "general"
