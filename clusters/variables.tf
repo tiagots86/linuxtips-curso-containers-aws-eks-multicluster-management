@@ -14,3 +14,8 @@ variable "ssm_vpc" {}
 variable "ssm_subnets" {
   type = list(string)
 }
+
+variable "node_group_temp_desired" {
+  type = number
+  default = 2
+}
