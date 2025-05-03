@@ -37,3 +37,14 @@ variable "karpenter_capacity" {
     availability_zones = list(string)
   }))
 }
+
+variable "clusters_configs" {
+  default = [
+    {
+      cluster_name = "linuxtips-cluster-01"
+    },
+    {
+      cluster_name = "linuxtips-cluster-02"
+    }
+  ]
+}
