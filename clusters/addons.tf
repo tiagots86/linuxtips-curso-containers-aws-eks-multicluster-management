@@ -19,24 +19,24 @@ resource "aws_eks_addon" "cni" {
 
 // CoreDNS 
 
-# data "aws_eks_addon_version" "coredns" {
-#   addon_name         = "coredns"
-#   kubernetes_version = aws_eks_cluster.main.version
-#   most_recent        = true
-# }
+data "aws_eks_addon_version" "coredns" {
+  addon_name         = "coredns"
+  kubernetes_version = aws_eks_cluster.main.version
+  most_recent        = true
+}
 
-# resource "aws_eks_addon" "coredns" {
-#   cluster_name = aws_eks_cluster.main.name
-#   addon_name   = "coredns"
+resource "aws_eks_addon" "coredns" {
+  cluster_name = aws_eks_cluster.main.name
+  addon_name   = "coredns"
 
-#   addon_version               = data.aws_eks_addon_version.coredns.version
-#   resolve_conflicts_on_create = "OVERWRITE"
-#   resolve_conflicts_on_update = "OVERWRITE"
+  addon_version               = data.aws_eks_addon_version.coredns.version
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "OVERWRITE"
 
-#   depends_on = [
-#     aws_eks_access_entry.nodes
-#   ]
-# }
+  depends_on = [
+    aws_eks_access_entry.nodes
+  ]
+}
 
 // Kube-Proxy 
 
