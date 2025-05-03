@@ -32,3 +32,27 @@ variable "karpenter_capacity" {
     availability_zones = list(string)
   }))
 }
+
+// Istio
+
+variable "istio_version" {
+  type        = string
+  description = "Versão do Istio"
+  default     = "1.25.0"
+}
+
+variable "istio_min_replicas" {
+  type        = string
+  description = "value of min replicas"
+  default     = "3"
+}
+
+variable "istio_cpu_threshold" {
+  type        = string
+  description = "value of cpu threshold"
+  default     = "60"
+}
+
+variable "istio_ssm_target_group" {
+  type = string
+}

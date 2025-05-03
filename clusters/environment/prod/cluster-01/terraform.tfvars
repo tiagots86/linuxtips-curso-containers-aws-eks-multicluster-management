@@ -22,3 +22,5 @@ karpenter_capacity = [
     availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
   },
 ]
+
+istio_ssm_target_group = "/linuxtips-ingress/cluster-01/listener"
