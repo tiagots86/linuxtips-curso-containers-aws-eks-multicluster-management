@@ -4,7 +4,7 @@ data "aws_iam_policy_document" "argocd_deployer_assume_role" {
 
     principals {
       type        = "AWS"
-      identifiers = [ aws_iam_role.argocd.arn ]
+      identifiers = [aws_iam_role.argocd.arn]
     }
 
     actions = [

@@ -26,6 +26,6 @@ resource "aws_eks_access_policy_association" "argocd" {
   principal_arn = var.argocd_deployer_role
 
   access_scope {
-    type       = "cluster"
+    type = "cluster"
   }
 }
