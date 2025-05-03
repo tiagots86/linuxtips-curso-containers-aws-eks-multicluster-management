@@ -15,4 +15,4 @@ routing_weight = {
 }
 
 route53_hosted_zone = "Z0995044WFZ9XOC72U0A"
-dns_name = "*.tiagots86.com.br"
+dns_name            = "*.tiagots86.com.br"

@@ -5,7 +5,7 @@ resource "aws_eks_node_group" "main" {
 
   node_role_arn = aws_iam_role.eks_nodes_role.arn
 
-  instance_types = [ "t3a.large" ]
+  instance_types = ["t3a.large"]
 
   subnet_ids = data.aws_ssm_parameter.subnets[*].value
 
