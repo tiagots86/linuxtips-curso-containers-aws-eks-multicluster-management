@@ -1,4 +1,4 @@
-project_name = "linuxtips-cluster-01"
+project_name = "linuxtips-cluster-02"
 
 k8s_version = "1.32"
 
